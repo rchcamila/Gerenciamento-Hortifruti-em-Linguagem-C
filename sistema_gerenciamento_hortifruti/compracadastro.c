@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #define MAX 100
 
 int opcao;
@@ -16,7 +15,9 @@ typedef struct {
     int categoria;
 } Produto;
 
-Produto produtos[MAX]; // Array para armazenar os produtos
+Produto produtos[MAX];
+
+int proximo_id = 1; // ID do próximo produto a ser cadastrado
 
 // Função para comparar produtos por nome (usada no qsort)
 int compara_nome(const void *a, const void *b) {
@@ -27,48 +28,39 @@ int compara_nome(const void *a, const void *b) {
 
 // Função para salvar os produtos no arquivo CSV
 void salvar_arquivo(Produto produtos[], int quantidade) {
-    FILE *arquivo = fopen("banco_dados/produtos.csv", "a");
+    FILE *arquivo = fopen("produtos.csv", "w");
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo!\n");
         return;
-    }else{
-        fseek(arquivo, 0, SEEK_END);
-        int size = ftell(arquivo);
-        if(size == 0){
-            // Cabeçalho do arquivo
-            fprintf(arquivo, "ID,Nome,Preco de Compra,Preco de Venda,Categoria\n");
-        }
     }
 
+    // Cabeçalho do arquivo
+    fprintf(arquivo, "ID,Nome,Preco de Compra,Preco de Venda,Categoria\n");
+
     // Salvando os produtos
-    fprintf(arquivo, "%d,%s,%.2f,%.2f,%d\n", produtos[quantidade -1 ].id, produtos[quantidade -1].nome, produtos[quantidade -1].preco_compra, produtos[quantidade -1].preco_venda, produtos[quantidade -1].categoria);
+    for (int i = 0; i < quantidade; i++) {
+        fprintf(arquivo, "%d,%s,%.2f,%.2f,%d\n", produtos[i].id, produtos[i].nome, produtos[i].preco_compra, produtos[i].preco_venda, produtos[i].categoria);
+    }
 
     fclose(arquivo);
     printf("Dados salvos com sucesso no arquivo produtos.csv!\n");
 }
 
-
-/////////////////////////////////
-// Função para carregar produtos do arquivo
 void carregarProdutos() {
-    FILE *arquivo = fopen("banco_dados/produtos.csv", "r");
+    FILE *arquivo = fopen("produtos.csv", "r");
     if (arquivo != NULL) {
         char linha[100];
         fgets(linha, sizeof(linha), arquivo);
         while (fscanf(arquivo, "%d,%49[^,],%f,%f,%d\n", &produtos[quantidade].id, produtos[quantidade].nome, &produtos[quantidade].preco_compra, &produtos[quantidade].preco_venda, &produtos[quantidade].categoria) == 5) {
             quantidade++;
+            if (produtos[quantidade - 1].id >= proximo_id) {
+                proximo_id = produtos[quantidade - 1].id + 1;
+            }
         }
         fclose(arquivo);
     }
 }
-/////////////////////
 
-// Nova função criada para recarregar todos os produtos
-void recarregarProdutos() {
-    quantidade = 0; // Reinicie a contagem de produtos
-    carregarProdutos();
-}
-// Função para visualizar produtos da categoria específica
 
 void visualizarProdutosPorCategoria(int categoria) {
     const char *categorias[] = {"Frutas", "Legumes", "Verduras", "Enlatados", "Outros"};
@@ -92,11 +84,9 @@ void visualizarProdutosPorCategoria(int categoria) {
     getchar();
 }
 
-// Função para cadastrar novos produtos
 void cadastrarProduto() {
     Produto novo_produto;
-    novo_produto.id = quantidade + 1;
-
+    novo_produto.id = quantidade > 0 ? produtos[quantidade - 1].id + 1 : 1;
     printf("Digite o nome do produto:\n> ");
     scanf(" %49[^\n]", novo_produto.nome);
 
@@ -106,19 +96,15 @@ void cadastrarProduto() {
     printf("Digite o preço de venda do produto:\n> ");
     scanf("%f", &novo_produto.preco_venda);
 
-    // Escolha da categoria do produto
     printf("Escolha a categoria do produto:\n");
     printf("1 - Frutas\n2 - Verduras\n3 - Legumes\n4 - Enlatados\n5 - Outros\n");
     scanf("%d", &novo_produto.categoria);
 
-    // Adiciona o novo produto ao array
     produtos[quantidade] = novo_produto;
     quantidade++;
 
-    // Ordena os produtos por nome
     qsort(produtos, quantidade, sizeof(Produto), compara_nome);
 
-    // Salva os produtos no arquivo CSV
     salvar_arquivo(produtos, quantidade);
 
     printf("\nProduto cadastrado com sucesso!\n\n");
@@ -126,8 +112,46 @@ void cadastrarProduto() {
     getchar();
     getchar();
 }
+int removerProduto() {
+    int id;
 
-// Função para visualizar categorias
+    printf("\t\tLista de Produtos\t\n");
+    printf("\t-----------------------------\t\n");
+    for (int j = 0; j < quantidade; j++) {
+        printf(" %d - Nome: %s | Preço de Compra: %.2f | Preço de Venda: %.2f\n",
+               produtos[j].id, produtos[j].nome, produtos[j].preco_compra, produtos[j].preco_venda);
+    }
+    printf("\t-----------------------------\t\n");
+
+    printf("\nDigite o ID do produto que deseja remover: ");
+    scanf("%d", &id);
+    getchar();
+
+
+    int index = -1;
+    for (int i = 0; i < quantidade; i++) {
+        if (produtos[i].id == id) {
+            index = i;
+            break;
+        }
+    }
+    if (index == -1) {
+        printf("\nID não encontrado!\n");
+        return 0;
+    }
+
+    for (int i = index; i < quantidade - 1; i++) {
+        produtos[i] = produtos[i + 1];
+    }
+    quantidade--;
+
+    salvar_arquivo(produtos, quantidade);
+
+    printf("Produto removido com sucesso!\n");
+    return 1;
+}
+
+
 void visualizarCategorias() {
     while (1) {
         printf("\nEscolha uma categoria para visualizar:\n");
@@ -136,12 +160,12 @@ void visualizarCategorias() {
         printf("3 - Verduras\n");
         printf("4 - Enlatados\n");
         printf("5 - Outros\n");
-        printf("6 - Retornar ao menu anterior\n");
+        printf("0 - Retornar ao menu anterior\n");
         scanf("%d", &opcao);
 
         if (opcao >= 1 && opcao <= 5) {
             visualizarProdutosPorCategoria(opcao);
-        } else if (opcao == 6) {
+        } else if (opcao == 0) {
             return;
         } else {
             printf("Opção não encontrada, digite novamente.\n");
@@ -149,14 +173,69 @@ void visualizarCategorias() {
     }
 }
 
-// Função para a rotina de compra/cadastro
+void alterarProduto() {
+    int input;
+    int id;
+
+    printf("\t\tLista de Produtos\t\n");
+    printf("\t-----------------------------\t\n");
+    for (int j = 0; j < quantidade; j++) {
+        printf(" %d - Nome: %s | Preço de Compra: %.2f | Preço de Venda: %.2f\n",
+               produtos[j].id, produtos[j].nome, produtos[j].preco_compra, produtos[j].preco_venda);
+    }
+    printf("\t-----------------------------\t\n");
+
+    printf("\nDigite o ID do produto que deseja alterar: ");
+    scanf("%d", &id);
+    getchar();
+    int index = -1;
+    for (int i = 0; i < quantidade; i++) {
+        if (produtos[i].id == id) {
+            index = i;
+            break;
+        }
+    }
+
+    if (index == -1) {
+        printf("\nID inválido!\n");
+        return;
+    }
+
+    Produto *produto = &produtos[index];
+    printf("Digite o novo nome do produto (ou pressione Enter para manter o atual): ");
+    char novo_nome[50];
+    scanf(" %[^\n]", novo_nome);
+    if (strcmp(novo_nome, "") != 0) {
+        strcpy(produto->nome, novo_nome);
+    }
+
+    printf("Digite o novo preço de compra (ou digite X para manter o atual): ");
+    char input_preco_compra[10];
+    scanf("%s", input_preco_compra);
+    if (strcmp(input_preco_compra, "X") != 0) {
+        produto->preco_compra = atof(input_preco_compra);
+    }
+
+    printf("Digite o novo preço de venda (ou digite X para manter o atual): ");
+    char input_preco_venda[10];
+    scanf("%s", input_preco_venda);
+    if (strcmp(input_preco_venda, "X") != 0) {
+        produto->preco_venda = atof(input_preco_venda);
+    }
+
+    printf("Produto alterado com sucesso!\n");
+
+    salvar_arquivo(produtos, quantidade);
+}
+
 void rotinaCompraCadastro() {
-    carregarProdutos();
     while (1) {
         printf("Escolha uma opção:\n");
         printf("1 - Registrar novos produtos\n");
         printf("2 - Visualizar por categoria\n");
-        printf("3 - Retornar ao menu anterior\n");
+        printf("3 - Alterar produto\n");
+        printf("4 - Remover produto\n");
+        printf("0 - Retornar ao menu anterior\n");
         scanf("%d", &opcao);
 
         switch (opcao) {
@@ -167,6 +246,12 @@ void rotinaCompraCadastro() {
                 visualizarCategorias();
                 break;
             case 3:
+                alterarProduto();
+                break;
+            case 4:
+                removerProduto();
+                break;
+            case 0:
                 return;
             default:
                 printf("Opção não encontrada, digite novamente.\n");

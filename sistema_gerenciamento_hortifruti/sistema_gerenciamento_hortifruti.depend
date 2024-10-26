@@ -53,3 +53,51 @@
 
 1729131984 c:\users\abdal\onedrive\Área de trabalho\pim_semestre_1\software\codigos\sistema_gerenciamento_hortifruti\administrativo.h
 
+1729896844 source:g:\camila\gerenciamento-hortifruti-em-linguagem-c\sistema_gerenciamento_hortifruti\administrativo.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+	"administrativo.h"
+	"menu.h"
+
+1729135584 g:\camila\gerenciamento-hortifruti-em-linguagem-c\sistema_gerenciamento_hortifruti\administrativo.h
+
+1729136154 g:\camila\gerenciamento-hortifruti-em-linguagem-c\sistema_gerenciamento_hortifruti\menu.h
+
+1729970789 source:g:\camila\gerenciamento-hortifruti-em-linguagem-c\sistema_gerenciamento_hortifruti\compracadastro.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1729135701 source:g:\camila\gerenciamento-hortifruti-em-linguagem-c\sistema_gerenciamento_hortifruti\financeiro.c
+	<stdio.h>
+	"financeiro.h"
+
+1729135576 g:\camila\gerenciamento-hortifruti-em-linguagem-c\sistema_gerenciamento_hortifruti\financeiro.h
+
+1729896803 source:g:\camila\gerenciamento-hortifruti-em-linguagem-c\sistema_gerenciamento_hortifruti\main.c
+	<stdio.h>
+	<string.h>
+	<locale.h>
+	"menu.h"
+
+1729896108 source:g:\camila\gerenciamento-hortifruti-em-linguagem-c\sistema_gerenciamento_hortifruti\menu.c
+	<stdio.h>
+	<locale.h>
+	<stdlib.h>
+	<string.h>
+	"menu.h"
+	"compracadastro.h"
+	"vendas.h"
+	"financeiro.h"
+	"administrativo.h"
+
+1729135580 g:\camila\gerenciamento-hortifruti-em-linguagem-c\sistema_gerenciamento_hortifruti\compracadastro.h
+
+1729135572 g:\camila\gerenciamento-hortifruti-em-linguagem-c\sistema_gerenciamento_hortifruti\vendas.h
+
+1729135718 source:g:\camila\gerenciamento-hortifruti-em-linguagem-c\sistema_gerenciamento_hortifruti\vendas.c
+	<stdio.h>
+	"vendas.h"
+
