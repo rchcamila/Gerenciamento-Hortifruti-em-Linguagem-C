@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<FileVersion major="1" minor="0" />
+	<ActiveTarget name="Debug" />
+	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3300" topLine="83" />
+		</Cursor>
+	</File>
+	<File name="financeiro.c" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="118" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="administrativo.c" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4571" topLine="149" />
+		</Cursor>
+	</File>
+	<File name="vendas.c" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="110" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="menu.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="73" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="vendas.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="59" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="menu.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="81" topLine="17" />
+		</Cursor>
+	</File>
+	<File name="financeiro.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="71" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="compracadastro.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="83" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="administrativo.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="115" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="compracadastro.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4555" topLine="79" />
+		</Cursor>
+	</File>
+</CodeBlocks_layout_file>

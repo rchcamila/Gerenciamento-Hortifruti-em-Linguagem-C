@@ -1,0 +1,55 @@
+# depslib dependency file v1.0
+1729896803 source:c:\users\abdal\onedrive\햞ea de trabalho\pim_semestre_1\software\codigos\sistema_gerenciamento_hortifruti\main.c
+	<stdio.h>
+	<string.h>
+	<locale.h>
+	"menu.h"
+
+1728313298 source:c:\users\abdal\onedrive\햞ea de trabalho\pim_semestre_1\software\codigos\sistema_gerenciamento_hortifruti\hortifruti_menu.c
+	<stdio.h>
+	<locale.h>
+	<stdlib.h>
+	<string.h>
+
+1729896108 source:c:\users\abdal\onedrive\햞ea de trabalho\pim_semestre_1\software\codigos\sistema_gerenciamento_hortifruti\menu.c
+	<stdio.h>
+	<locale.h>
+	<stdlib.h>
+	<string.h>
+	"menu.h"
+	"compracadastro.h"
+	"vendas.h"
+	"financeiro.h"
+	"administrativo.h"
+
+1729132554 c:\users\abdal\onedrive\햞ea de trabalho\pim_semestre_1\software\codigos\sistema_gerenciamento_hortifruti\menu.h
+
+1729131980 c:\users\abdal\onedrive\햞ea de trabalho\pim_semestre_1\software\codigos\sistema_gerenciamento_hortifruti\compracadastro.h
+
+1729820104 source:c:\users\abdal\onedrive\햞ea de trabalho\pim_semestre_1\software\codigos\sistema_gerenciamento_hortifruti\compracadastro.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1729131972 c:\users\abdal\onedrive\햞ea de trabalho\pim_semestre_1\software\codigos\sistema_gerenciamento_hortifruti\vendas.h
+
+1729132118 source:c:\users\abdal\onedrive\햞ea de trabalho\pim_semestre_1\software\codigos\sistema_gerenciamento_hortifruti\vendas.c
+	<stdio.h>
+	"vendas.h"
+
+1729131976 c:\users\abdal\onedrive\햞ea de trabalho\pim_semestre_1\software\codigos\sistema_gerenciamento_hortifruti\financeiro.h
+
+1729132101 source:c:\users\abdal\onedrive\햞ea de trabalho\pim_semestre_1\software\codigos\sistema_gerenciamento_hortifruti\financeiro.c
+	<stdio.h>
+	"financeiro.h"
+
+1729896844 source:c:\users\abdal\onedrive\햞ea de trabalho\pim_semestre_1\software\codigos\sistema_gerenciamento_hortifruti\administrativo.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+	"administrativo.h"
+	"menu.h"
+
+1729131984 c:\users\abdal\onedrive\햞ea de trabalho\pim_semestre_1\software\codigos\sistema_gerenciamento_hortifruti\administrativo.h
+
